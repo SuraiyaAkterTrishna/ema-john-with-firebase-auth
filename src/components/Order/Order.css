@@ -1,0 +1,17 @@
+.review-container {
+    margin: 50px auto;
+}
+.proceed-checkout {
+    display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin: 10px auto;
+  color: white;
+  background-color: rgb(90, 156, 35);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+}
+.proceed-link {
+  text-decoration: none;
+}
