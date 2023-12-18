@@ -1,9 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { Link } from 'react-router-dom';
 import './SignUp.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../providers/AuthProvider';
 
 const SignUp = () => {
     const [error, setError] = useState('');
+    const {createUser} = useContext(AuthContext);
+
     const handleSignUp = (event) => {
         event.preventDefault();
         setError('');
@@ -12,7 +16,7 @@ const SignUp = () => {
         const password = form.password.value;
         const confirm = form.confirm.value;
         console.log(email, password, confirm);
-
+        setError('');
         if(password !== confirm){
             setError('Your password did not match');
             return;
@@ -21,6 +25,16 @@ const SignUp = () => {
             setError('Password must be 6 characters or longer');
             return
         }
+
+        createUser(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+        })
+        .catch(error => {
+            console.log(error);
+            setError(error.message);
+        })
     }
     return (
         <div className='form-container'>
